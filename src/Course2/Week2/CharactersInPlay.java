@@ -3,7 +3,6 @@ package Course2.Week2;
 import edu.duke.FileResource;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class CharactersInPlay {
     private ArrayList<String> characterNames;
@@ -33,7 +32,7 @@ public class CharactersInPlay {
 
     public void findAllCharacters(){
         clearVariables();
-        FileResource resource = new FileResource("./Course2/data/likeit.txt");
+        FileResource resource = new FileResource("Course2/data/Quiz/errors.txt");
 
         for (String s: resource.lines()){
             int indexOfFirstDot = s.indexOf(".");
@@ -90,6 +89,6 @@ public class CharactersInPlay {
         CharactersInPlay cip = new CharactersInPlay();
         cip.findAllCharacters();
         cip.tester();
-        cip.charactersWithNumParts(10, 1000);
+        cip.charactersWithNumParts(10, 15);
     }
 }

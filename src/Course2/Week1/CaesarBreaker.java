@@ -71,7 +71,7 @@ public class CaesarBreaker {
     }
 
     public void testDecrypt(){
-        FileResource resource = new FileResource("Course2/data/hamlet.txt");
+        FileResource resource = new FileResource("Course2/data/Quiz/hamlet.txt");
         Iterable<String> listOfWords = resource.words();
         StringBuilder sb = new StringBuilder();
         for (String word : listOfWords) sb.append(word).append(" ");
