@@ -20,13 +20,29 @@ public class Tester
     public void testLogAnalyzer() {
         // complete method
         LogAnalyzer la = new LogAnalyzer();
-        la.readFile("./src/Course2/Week3/weblog3-short_log");
+        la.readFile("./src/Course2/Week3/weblog2_log");
         HashMap<String, Integer> counts = la.countVisitsPerIP();
-
-        ArrayList<String> tmp = la.iPsMostVisits(counts);
-        for (String ip : tmp) System.out.println(ip);
+        HashMap<String, ArrayList<String>> ips = la.iPsForDays();
 
 
+
+        System.out.println(la.countUniqueIPs());
+        ArrayList<String> uniqueIPs = la.uniqueIPVisitsOnDay("Sep 24");
+        System.out.println(uniqueIPs.size());
+
+        int countIps = la.countUniqueIPsInRange(400, 499);
+        System.out.println(countIps);
+        int i = la.mostNumberVisitsByIP(counts);
+        ArrayList<String> strings = la.iPsMostVisits(counts);
+
+        System.out.println(i);
+        System.out.println(strings);
+
+        String s = la.dayWithMostIPVisits();
+        System.out.println(s);
+
+        ArrayList<String> strings1 = la.iPsWithMostVisitsOnDay("Sep-29");
+        System.out.println(strings1);
 
     }
 }

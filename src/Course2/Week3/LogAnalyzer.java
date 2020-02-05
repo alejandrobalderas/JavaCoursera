@@ -6,6 +6,7 @@ package Course2.Week3;
  * @version (a version number or a date)
  */
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import edu.duke.*;
 
@@ -100,6 +101,67 @@ public class LogAnalyzer
              if (map.get(key) == maxNumberOfEntries) mostVisits.add(key);
          }
          return mostVisits;
+     }
+
+     public HashMap<String, ArrayList<String>> iPsForDays(){
+         HashMap<String, ArrayList<String>> ips = new HashMap<>();
+
+         String pattern = "MMM-dd";
+         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+         for (LogEntry le: records){
+             Date accessTime = le.getAccessTime();
+             String date = simpleDateFormat.format(accessTime);
+
+             String ipAddress = le.getIpAddress();
+
+             if (!ips.containsKey(date)){
+                 ips.put(date, new ArrayList<String>());
+                 ArrayList<String> ipAddresses = ips.get(date);
+                 ipAddresses.add(ipAddress);
+             } else {
+                 ArrayList<String> ipAddresses = ips.get(date);
+                 ipAddresses.add(ipAddress);
+             }
+
+         }
+
+         return ips;
+     }
+
+     public String dayWithMostIPVisits(){
+
+         String dayWithMostVisits = "";
+         int mostVisits = 0;
+         HashMap<String, ArrayList<String>> ipForDays = iPsForDays();
+
+         for (String date : ipForDays.keySet()){
+             int currentVisits = ipForDays.get(date).size();
+             if (currentVisits>mostVisits){
+                 mostVisits = currentVisits;
+                 dayWithMostVisits = date;
+             }
+         }
+         return dayWithMostVisits;
+     }
+
+     public ArrayList<String> iPsWithMostVisitsOnDay(String dayToCheck){
+         HashMap<String, ArrayList<String>> ipForDays = iPsForDays();
+         ArrayList<String> ipForDayToCheck = ipForDays.get(dayToCheck);
+
+         HashMap<String, Integer> counts = new HashMap<>();
+         for (String ipAddr : ipForDayToCheck){
+             if (!counts.containsKey(ipAddr)){
+                 counts.put(ipAddr,1);
+             } else {
+                 counts.put(ipAddr, counts.get(ipAddr)+1);
+             }
+         }
+
+
+
+         return iPsMostVisits(counts);
+
      }
 
      public int countUniqueIPsInRange(int low, int high){
