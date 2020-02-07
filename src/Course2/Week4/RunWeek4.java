@@ -15,12 +15,6 @@ public class RunWeek4 {
 
         VigenereBreaker vigenereBreaker = new VigenereBreaker();
         vigenereBreaker.breakVigenere();
-//
-//        FileResource dict = new FileResource("./src/Course2/Week4/dictionaries/English");
-//        HashSet<String> dictionary = vigenereBreaker.readDictionary(dict);
-//
-//        String decryptedMessage = vigenereBreaker.breakForLanguage(fileAsString, dictionary);
-////        System.out.println(decryptedMessage);
 
     }
 }
